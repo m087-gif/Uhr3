@@ -7,12 +7,12 @@
 <style>
   :root{--bg:#0b0f17;--fg:#e9edf1;--accent:#d4af37}
   html,body{width:1152px;height:576px;margin:0;background:var(--bg);overflow:hidden;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
-  .card-clock{display:flex;justify-content:center;align-items:center;width:100%;height:100%}
+  .card-clock{display:flex;justify-content:flex-end;align-items:center;width:100%;height:100%;padding-right:384px} /* 1/3 von rechts */
   .clock-wrap{width:100%;max-width:576px;aspect-ratio:1}
   svg{width:100%;height:100%}
-  .brand-top{font-weight:900;font-size:72px;fill:#dcdcdc}
-  .day-text{font-weight:900;font-size:64px;fill:#e6e9ee;letter-spacing:1px}
-  .date-text{font-weight:900;font-size:48px;fill:#000;text-anchor:middle;dominant-baseline:middle}
+  .brand-top{font-weight:900;font-size:90px;fill:#dcdcdc} /* Vita Plan größer */
+  .day-text{font-weight:700;font-size:70px;fill:#e6e9ee;letter-spacing:1px} /* Wochentag etwas größer */
+  .date-text{font-weight:700;font-size:60px;fill:#000;text-anchor:middle;dominant-baseline:middle} /* Datum größer */
   .sunburst-lines{opacity:.28}
 </style>
 </head>
@@ -43,23 +43,22 @@
       <circle cx="500" cy="500" r="420" fill="url(#dialGrad)"/>
 
       <g id="sunburst" class="sunburst-lines" clip-path="url(#dialClip)" filter="url(#sunBlur)"></g>
-
       <g id="indices"></g>
 
-      <text class="brand-top" x="500" y="320" text-anchor="middle">Vita Plan GmbH</text>
-      <text id="dayText" x="500" y="730" text-anchor="middle" class="day-text">---</text>
+      <text class="brand-top" x="500" y="300" text-anchor="middle">Vita Plan GmbH</text>
+      <text id="dayText" x="500" y="700" text-anchor="middle" class="day-text">---</text>
 
       <g id="hands" filter="url(#handShadow)">
-        <g id="hourHand" transform="rotate(0 500 500)"><rect x="492" y="300" width="16" height="220" rx="8" fill="#d4af37" transform="translate(-8,0)"/></g>
-        <g id="minuteHand" transform="rotate(0 500 500)"><rect x="488" y="230" width="20" height="290" rx="10" fill="#c9c9c9" transform="translate(-10,0)"/></g>
-        <g id="secondHand" transform="rotate(0 500 500)"><rect x="497" y="180" width="6" height="340" rx="3" fill="#e74c3c" transform="translate(-3,0)"/><circle cx="500" cy="170" r="10" fill="#e74c3c"/></g>
+        <g id="hourHand" transform="rotate(0 500 500)"><rect x="484" y="300" width="32" height="220" rx="16" fill="#d4af37"/></g>
+        <g id="minuteHand" transform="rotate(0 500 500)"><rect x="482" y="230" width="36" height="290" rx="18" fill="#c9c9c9"/></g>
+        <g id="secondHand" transform="rotate(0 500 500)"><rect x="493" y="180" width="14" height="340" rx="7" fill="#e74c3c"/><circle cx="500" cy="180" r="10" fill="#e74c3c"/></g>
       </g>
 
       <circle cx="500" cy="500" r="14" fill="#d4af37"/>
 
       <g id="dateWindow">
-        <rect x="580" y="440" width="120" height="90" rx="10" ry="10" fill="#ffffff" stroke="#0b0f17" stroke-width="3"/>
-        <text id="dateText" x="640" y="485" class="date-text">15</text>
+        <rect x="590" y="445" width="100" height="70" rx="10" ry="10" fill="#ffffff" stroke="#0b0f17" stroke-width="3"/>
+        <text id="dateText" x="640" y="480" class="date-text">15</text>
       </g>
     </svg>
   </div>
@@ -126,6 +125,12 @@
     hourG.setAttribute('transform',`rotate(${h*30} 500 500)`);
     minuteG.setAttribute('transform',`rotate(${m*6} 500 500)`);
     secondG.setAttribute('transform',`rotate(${s*6} 500 500)`);
+
+    // Zentrierter Sekundenpunkt mittig auf Zeiger
+    const secCircle = secondG.querySelector('circle');
+    secCircle.setAttribute('cx', '500');
+    secCircle.setAttribute('cy', '500');
+
     dateText.textContent = d.toLocaleString('de-CH',{day:'2-digit'});
     dayText.textContent = new Intl.DateTimeFormat('de-CH',{weekday:'long'}).format(d);
     requestAnimationFrame(updateHands);
