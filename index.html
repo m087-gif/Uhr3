@@ -6,13 +6,19 @@
 <title>LED Panel Uhr - Vita Plan GmbH</title>
 <style>
   :root{--bg:#0b0f17;--fg:#e9edf1;--accent:#d4af37}
-  html,body{width:1152px;height:576px;margin:0;background:var(--bg);overflow:hidden;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
-  .card-clock{display:flex;justify-content:flex-end;align-items:center;width:100%;height:100%;padding-right:384px} /* 1/3 von rechts */
-  .clock-wrap{width:100%;max-width:576px;aspect-ratio:1}
+  html,body{
+    width:1152px;height:256px;margin:0;background:var(--bg);overflow:hidden;
+    font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial
+  }
+  .card-clock{
+    display:flex;justify-content:flex-end;align-items:center;width:100%;height:100%;
+    padding-right:384px /* 1/3 von rechts */
+  }
+  .clock-wrap{width:100%;max-width:256px;aspect-ratio:1}
   svg{width:100%;height:100%}
-  .brand-top{font-weight:900;font-size:90px;fill:#dcdcdc} /* Vita Plan größer */
-  .day-text{font-weight:700;font-size:70px;fill:#e6e9ee;letter-spacing:1px} /* Wochentag etwas größer */
-  .date-text{font-weight:700;font-size:60px;fill:#000;text-anchor:middle;dominant-baseline:middle} /* Datum größer */
+  .brand-top{font-weight:900;font-size:60px;fill:#dcdcdc} /* Vita Plan proportional angepasst */
+  .day-text{font-weight:700;font-size:40px;fill:#e6e9ee;letter-spacing:1px} /* Wochentag lesbar */
+  .date-text{font-weight:700;font-size:36px;fill:#000;text-anchor:middle;dominant-baseline:middle} /* Datum größer */
   .sunburst-lines{opacity:.28}
 </style>
 </head>
@@ -51,14 +57,14 @@
       <g id="hands" filter="url(#handShadow)">
         <g id="hourHand" transform="rotate(0 500 500)"><rect x="484" y="300" width="32" height="220" rx="16" fill="#d4af37"/></g>
         <g id="minuteHand" transform="rotate(0 500 500)"><rect x="482" y="230" width="36" height="290" rx="18" fill="#c9c9c9"/></g>
-        <g id="secondHand" transform="rotate(0 500 500)"><rect x="493" y="180" width="14" height="340" rx="7" fill="#e74c3c"/><circle cx="500" cy="180" r="10" fill="#e74c3c"/></g>
+        <g id="secondHand" transform="rotate(0 500 500)"><rect x="493" y="180" width="14" height="340" rx="7" fill="#e74c3c"/><circle cx="500" cy="500" r="10" fill="#e74c3c"/></g>
       </g>
 
       <circle cx="500" cy="500" r="14" fill="#d4af37"/>
 
       <g id="dateWindow">
-        <rect x="590" y="445" width="100" height="70" rx="10" ry="10" fill="#ffffff" stroke="#0b0f17" stroke-width="3"/>
-        <text id="dateText" x="640" y="480" class="date-text">15</text>
+        <rect x="590" y="445" width="80" height="50" rx="10" ry="10" fill="#ffffff" stroke="#0b0f17" stroke-width="3"/>
+        <text id="dateText" x="630" y="470" class="date-text">15</text>
       </g>
     </svg>
   </div>
